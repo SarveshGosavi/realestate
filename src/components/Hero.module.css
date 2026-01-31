@@ -1,0 +1,189 @@
+.hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+    padding-top: 8rem;
+    background: linear-gradient(rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.8)), url('/hero-bg.png');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+}
+
+.container {
+    position: relative;
+    z-index: 20;
+    text-align: center;
+}
+
+.title {
+    font-size: clamp(2.5rem, 8vw, 4.5rem);
+    line-height: 1.1;
+    margin-bottom: 1.5rem;
+    letter-spacing: -0.03em;
+    font-weight: 800;
+}
+
+.subtitle {
+    font-size: clamp(1.1rem, 2vw, 1.4rem);
+    color: var(--text-muted);
+    max-width: 700px;
+    margin: 0 auto 3.5rem;
+    line-height: 1.6;
+}
+
+.inputWrapper {
+    display: flex;
+    padding: 0.5rem;
+    max-width: 650px;
+    margin: 0 auto;
+    gap: 0.5rem;
+    border-radius: 1.25rem;
+    background: white;
+    border: 1px solid var(--glass-border);
+    box-shadow: var(--shadow-lg);
+}
+
+.input {
+    flex: 1;
+    background: transparent;
+    border: none;
+    padding: 0 1.5rem;
+    color: var(--text-main);
+    font-size: 1.1rem;
+    outline: none;
+}
+
+.input::placeholder {
+    color: var(--text-muted);
+    opacity: 0.6;
+}
+
+.badges {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    margin-top: 3rem;
+    flex-wrap: wrap;
+}
+
+.badge {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--text-muted);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.floatingImage1 {
+    position: absolute;
+    right: 8%;
+    bottom: 12%;
+    width: 260px;
+    height: 170px;
+    border-radius: 1rem;
+    overflow: hidden;
+    border: 6px solid white;
+    box-shadow: var(--shadow-xl);
+    transform: rotate(4deg);
+    animation: float1 6s ease-in-out infinite;
+    z-index: 5;
+    display: none;
+}
+
+.floatingImage2 {
+    position: absolute;
+    left: 8%;
+    top: 20%;
+    width: 220px;
+    height: 150px;
+    border-radius: 1rem;
+    overflow: hidden;
+    border: 6px solid white;
+    box-shadow: var(--shadow-xl);
+    transform: rotate(-6deg);
+    animation: float2 7s ease-in-out infinite;
+    z-index: 5;
+    display: none;
+}
+
+.floatingImage1 img,
+.floatingImage2 img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+@keyframes float1 {
+
+    0%,
+    100% {
+        transform: rotate(4deg) translateY(0);
+    }
+
+    50% {
+        transform: rotate(4deg) translateY(-15px);
+    }
+}
+
+@keyframes float2 {
+
+    0%,
+    100% {
+        transform: rotate(-6deg) translateY(0);
+    }
+
+    50% {
+        transform: rotate(-6deg) translateY(15px);
+    }
+}
+
+@media (min-width: 1600px) {
+
+    .floatingImage1,
+    .floatingImage2 {
+        display: block;
+    }
+}
+
+.glow1 {
+    position: absolute;
+    top: -10%;
+    left: -10%;
+    width: 60%;
+    height: 60%;
+    background: radial-gradient(circle, var(--primary-glow) 0%, transparent 70%);
+    filter: blur(100px);
+    z-index: -1;
+}
+
+.glow2 {
+    position: absolute;
+    bottom: -10%;
+    right: -10%;
+    width: 50%;
+    height: 50%;
+    background: radial-gradient(circle, var(--secondary-glow) 0%, transparent 70%);
+    filter: blur(80px);
+    z-index: -1;
+}
+
+@media (max-width: 768px) {
+    .inputWrapper {
+        flex-direction: column;
+        padding: 1rem;
+        background: var(--bg-surface);
+    }
+
+    .input {
+        padding: 1rem 0;
+        text-align: center;
+    }
+
+    .badge {
+        font-size: 0.8rem;
+    }
+}
