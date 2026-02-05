@@ -1,22 +1,31 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Outfit:wght@400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700;800&display=swap');
+/* Note: Gordita and Helvetica World are often premium/system fonts. 
+   Using Hanken Grotesk as a Gordita alternative and Inter/Helvetica fallbacks for Helvetica World. */
 
 :root {
-  --bg-deep: #ffffff;
-  --bg-surface: #f8fafc;
-  --primary: #6366f1;
-  --primary-glow: rgba(99, 102, 241, 0.15);
-  --secondary: #0ea5e9;
-  --secondary-glow: rgba(14, 165, 233, 0.15);
-  --text-main: #0f172a;
-  --text-muted: #64748b;
-  --glass: rgba(255, 255, 255, 0.7);
-  --glass-border: rgba(0, 0, 0, 0.06);
-  --glass-hover: rgba(255, 255, 255, 0.9);
-  --gradient-main: linear-gradient(135deg, #6366f1 0%, #0ea5e9 100%);
-  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
-  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
-  --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  --bg-deep: #f7f9fe;
+  --bg-surface: #ffffff;
+  --primary: #26292e;
+  --primary-glow: rgba(38, 41, 46, 0.1);
+  --secondary: #5e6978;
+  --secondary-glow: rgba(94, 105, 120, 0.1);
+  --text-main: #26292e;
+  --text-muted: #5e6978;
+  --glass: rgba(255, 255, 255, 0.85);
+  --glass-border: #dbdfea;
+  --glass-hover: #ffffff;
+  --gradient-main: linear-gradient(135deg, #26292e 0%, #5e6978 100%);
+  --shadow-sm: 0 1px 2px rgba(38, 41, 46, 0.05);
+  --shadow-md: 0 4px 6px -1px rgba(38, 41, 46, 0.1), 0 2px 4px -1px rgba(38, 41, 46, 0.06);
+  --shadow-lg: 0 10px 15px -3px rgba(38, 41, 46, 0.1), 0 4px 6px -2px rgba(38, 41, 46, 0.05);
+  --shadow-xl: 0 20px 25px -5px rgba(38, 41, 46, 0.1), 0 10px 10px -5px rgba(38, 41, 46, 0.04);
+
+  /* Animation timing */
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-out-quart: cubic-bezier(0.25, 1, 0.5, 1);
+  --duration-fast: 0.2s;
+  --duration-normal: 0.4s;
+  --duration-slow: 0.6s;
 }
 
 * {
@@ -29,9 +38,10 @@ html,
 body {
   background-color: var(--bg-deep);
   color: var(--text-main);
-  font-family: 'Inter', sans-serif;
+  font-family: 'Helvetica World', 'Inter', 'Helvetica Neue', Helvetica, Arial, sans-serif;
   overflow-x: hidden;
   scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
 }
 
 h1,
@@ -39,7 +49,8 @@ h2,
 h3,
 h4,
 .heading-font {
-  font-family: 'Outfit', sans-serif;
+  font-family: 'Gordita', 'Hanken Grotesk', 'Outfit', sans-serif;
+  letter-spacing: -0.02em;
 }
 
 .container {
@@ -48,6 +59,7 @@ h4,
   padding: 0 1.5rem;
 }
 
+/* Glass Effects */
 .glass {
   background: var(--glass);
   backdrop-filter: blur(12px);
@@ -62,32 +74,69 @@ h4,
   border: 1px solid var(--glass-border);
   border-radius: 1.5rem;
   padding: 2rem;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: all var(--duration-normal) var(--ease-out-expo);
   box-shadow: var(--shadow-md);
 }
 
 .glass-card:hover {
   background: white;
-  border-color: var(--primary);
-  transform: translateY(-6px);
-  box-shadow: var(--shadow-xl);
+  border-color: var(--secondary);
+  transform: translateY(-8px);
+  box-shadow: var(--shadow-xl), 0 0 0 1px var(--secondary-glow);
 }
 
+/* Primary Button */
 .btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
   background: var(--gradient-main);
   border: none;
-  padding: 0.8rem 2.2rem;
+  padding: 0.9rem 2.4rem;
   border-radius: 0.85rem;
   color: white;
   font-weight: 600;
+  font-size: 1rem;
   cursor: pointer;
-  transition: all 0.3s ease;
-  box-shadow: 0 10px 15px -3px var(--primary-glow);
+  transition: all var(--duration-normal) var(--ease-out-expo);
+  box-shadow: 0 4px 14px -3px var(--primary-glow);
+  text-decoration: none;
 }
 
 .btn-primary:hover {
+  transform: translateY(-3px) scale(1.02);
+  box-shadow: 0 12px 24px -6px rgba(38, 41, 46, 0.25);
+}
+
+.btn-primary:active {
+  transform: translateY(-1px) scale(0.98);
+}
+
+/* Secondary Button */
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  background: transparent;
+  border: 2px solid var(--glass-border);
+  padding: 0.85rem 2.2rem;
+  border-radius: 0.85rem;
+  color: var(--text-main);
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all var(--duration-normal) var(--ease-out-expo);
+  text-decoration: none;
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-secondary:hover {
+  border-color: var(--primary);
+  background: var(--primary-glow);
   transform: translateY(-2px);
-  box-shadow: 0 20px 25px -5px var(--primary-glow);
 }
 
 .gradient-text {
@@ -97,12 +146,100 @@ h4,
   background-clip: text;
 }
 
+/* Section Spacing */
 section {
-  padding: 6rem 0;
+  padding: 8rem 0;
 }
 
 @media (max-width: 768px) {
   section {
-    padding: 4rem 0;
+    padding: 5rem 0;
   }
+}
+
+/* Animation Keyframes */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(30px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Scroll Reveal Utility Classes */
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all var(--duration-slow) var(--ease-out-expo);
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.reveal-delay-1 {
+  transition-delay: 0.1s;
+}
+
+.reveal-delay-2 {
+  transition-delay: 0.2s;
+}
+
+.reveal-delay-3 {
+  transition-delay: 0.3s;
+}
+
+.reveal-delay-4 {
+  transition-delay: 0.4s;
 }

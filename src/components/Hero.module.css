@@ -6,7 +6,8 @@
     position: relative;
     overflow: hidden;
     padding-top: 8rem;
-    background: linear-gradient(rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.8)), url('/hero-bg.png');
+    padding-bottom: 4rem;
+    background: linear-gradient(rgba(247, 249, 254, 0.8), rgba(247, 249, 254, 0.8)), url('/hero-bg.png');
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
@@ -172,18 +173,54 @@
 }
 
 @media (max-width: 768px) {
+    .hero {
+        padding-top: 6rem;
+    }
+
     .inputWrapper {
         flex-direction: column;
-        padding: 1rem;
-        background: var(--bg-surface);
+        padding: 0.75rem;
+        background: white;
     }
 
     .input {
-        padding: 1rem 0;
+        padding: 0.75rem 0;
         text-align: center;
+        width: 100%;
+    }
+
+    .inputWrapper button {
+        width: 100%;
+        padding: 1rem;
     }
 
     .badge {
         font-size: 0.8rem;
+    }
+}
+
+/* Entrance Animations */
+.animateIn {
+    opacity: 0;
+    transform: translateY(30px);
+    animation: heroFadeIn 0.8s var(--ease-out-expo) forwards;
+}
+
+.delay1 {
+    animation-delay: 0.15s;
+}
+
+.delay2 {
+    animation-delay: 0.3s;
+}
+
+.delay3 {
+    animation-delay: 0.45s;
+}
+
+@keyframes heroFadeIn {
+    to {
+        opacity: 1;
+        transform: translateY(0);
     }
 }

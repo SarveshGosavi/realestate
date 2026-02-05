@@ -2,6 +2,7 @@
 
 import { useState, useRef } from 'react';
 import styles from './Examples.module.css';
+import ScrollReveal from './ScrollReveal';
 
 const Examples = () => {
     const [playingIndex, setPlayingIndex] = useState<number | null>(null);
@@ -92,71 +93,75 @@ const Examples = () => {
     return (
         <section id="examples" className={styles.examples}>
             <div className="container">
-                <div className={styles.header}>
-                    <h2 className="heading-font">See what your <br /><span className="gradient-text">listings could look like</span></h2>
-                    <p>Join thousands of agents using Realestate to sell properties faster.</p>
-                </div>
+                <ScrollReveal>
+                    <div className={styles.header}>
+                        <h2 className="heading-font">See what your <br /><span className="gradient-text">listings could look like</span></h2>
+                        <p>Join thousands of agents using TourSpace to sell properties faster.</p>
+                    </div>
+                </ScrollReveal>
 
                 <div className={styles.grid}>
                     {examples.map((ex, i) => (
-                        <div key={i} className={styles.card}>
-                            <div
-                                className={styles.imageWrapper}
-                                onClick={() => handleVideoClick(i)}
-                            >
-                                <video
-                                    ref={(el) => { videoRefs.current[i] = el; }}
-                                    className={styles.image}
-                                    poster={ex.poster}
-                                    muted
-                                    loop
-                                    playsInline
-                                    preload="metadata"
-                                >
-                                    <source src={ex.video} type="video/mp4" />
-                                    Your browser does not support the video tag.
-                                </video>
-
-                                {/* AI Avatar Overlay */}
-                                <div className={styles.avatarOverlay}>
-                                    <img src="/ai-avatar.png" alt="AI Agent" />
-                                </div>
-
-                                {/* Text Caption Overlay - Shows when playing */}
-                                {playingIndex === i && (
-                                    <div className={styles.textOverlay}>
-                                        <p dangerouslySetInnerHTML={{
-                                            __html: ex.caption.replace(
-                                                /<highlight>(.*?)<\/highlight>/g,
-                                                '<span class="' + styles.highlightedText + '">$1</span>'
-                                            )
-                                        }} />
-                                    </div>
-                                )}
-
-                                {/* Property Details Badge - Shows on hover */}
-                                <div className={styles.propertyBadge}>
-                                    <span className={styles.price}>{ex.price}</span>
-                                    <span className={styles.details}>{ex.beds} beds • {ex.baths} baths</span>
-                                </div>
-
-                                {/* Play Button Overlay */}
+                        <ScrollReveal key={i} delay={i * 100}>
+                            <div className={styles.card}>
                                 <div
-                                    className={styles.playOverlay}
-                                    style={{ opacity: playingIndex === i ? 0 : 1 }}
+                                    className={styles.imageWrapper}
+                                    onClick={() => handleVideoClick(i)}
                                 >
-                                    <div className={styles.playButton}>
-                                        <svg viewBox="0 0 24 24" fill="currentColor">
-                                            <path d="M8 5v14l11-7z" />
-                                        </svg>
+                                    <video
+                                        ref={(el) => { videoRefs.current[i] = el; }}
+                                        className={styles.image}
+                                        poster={ex.poster}
+                                        muted
+                                        loop
+                                        playsInline
+                                        preload="metadata"
+                                    >
+                                        <source src={ex.video} type="video/mp4" />
+                                        Your browser does not support the video tag.
+                                    </video>
+
+                                    {/* AI Avatar Overlay */}
+                                    <div className={styles.avatarOverlay}>
+                                        <img src="/ai-avatar.png" alt="AI Agent" />
+                                    </div>
+
+                                    {/* Text Caption Overlay - Shows when playing */}
+                                    {playingIndex === i && (
+                                        <div className={styles.textOverlay}>
+                                            <p dangerouslySetInnerHTML={{
+                                                __html: ex.caption.replace(
+                                                    /<highlight>(.*?)<\/highlight>/g,
+                                                    '<span class="' + styles.highlightedText + '">$1</span>'
+                                                )
+                                            }} />
+                                        </div>
+                                    )}
+
+                                    {/* Property Details Badge - Shows on hover */}
+                                    <div className={styles.propertyBadge}>
+                                        <span className={styles.price}>{ex.price}</span>
+                                        <span className={styles.details}>{ex.beds} beds • {ex.baths} baths</span>
+                                    </div>
+
+                                    {/* Play Button Overlay */}
+                                    <div
+                                        className={styles.playOverlay}
+                                        style={{ opacity: playingIndex === i ? 0 : 1 }}
+                                    >
+                                        <div className={styles.playButton}>
+                                            <svg viewBox="0 0 24 24" fill="currentColor">
+                                                <path d="M8 5v14l11-7z" />
+                                            </svg>
+                                        </div>
                                     </div>
                                 </div>
+                                <div className={styles.info}>
+                                    <h3>{ex.title}</h3>
+                                    <p>{ex.location}</p>
+                                </div>
                             </div>
-                            <div className={styles.info}>
-                                <h3>{ex.title}</h3>
-                                <p>{ex.location}</p>
-                            </div>
-                        </div>
+                        </ScrollReveal>
                     ))}
                 </div>
 

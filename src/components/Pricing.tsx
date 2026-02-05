@@ -1,4 +1,6 @@
+'use client';
 import styles from './Pricing.module.css';
+import ScrollReveal from './ScrollReveal';
 
 const Pricing = () => {
     const plans = [
@@ -46,28 +48,32 @@ const Pricing = () => {
     return (
         <section id="pricing" className={styles.pricing}>
             <div className="container">
-                <div className={styles.header}>
-                    <h2 className="heading-font">Simple, <span className="gradient-text">transparent</span> pricing</h2>
-                    <p>Choose the plan that fits your listing volume.</p>
-                </div>
+                <ScrollReveal>
+                    <div className={styles.header}>
+                        <h2 className="heading-font">Simple, <span className="gradient-text">transparent</span> pricing</h2>
+                        <p>Choose the plan that fits your listing volume.</p>
+                    </div>
+                </ScrollReveal>
 
                 <div className={styles.grid}>
                     {plans.map((plan, i) => (
-                        <div key={i} className={`${plan.featured ? styles.featured : 'glass-card'}`}>
-                            <h3>{plan.name}</h3>
-                            <div className={styles.price}>
-                                <span className={styles.amount}>{plan.price}</span>
-                                <span className={styles.period}>{plan.period}</span>
+                        <ScrollReveal key={i} delay={i * 150}>
+                            <div className={`${plan.featured ? styles.featured : 'glass-card'}`}>
+                                <h3>{plan.name}</h3>
+                                <div className={styles.price}>
+                                    <span className={styles.amount}>{plan.price}</span>
+                                    <span className={styles.period}>{plan.period}</span>
+                                </div>
+                                <ul className={styles.featureList}>
+                                    {plan.features.map((f, j) => (
+                                        <li key={j}>✅ {f}</li>
+                                    ))}
+                                </ul>
+                                <button className={plan.featured ? 'btn-primary' : 'btn-secondary'} style={{ width: '100%', marginTop: '2rem' }}>
+                                    {plan.cta}
+                                </button>
                             </div>
-                            <ul className={styles.featureList}>
-                                {plan.features.map((f, j) => (
-                                    <li key={j}>✅ {f}</li>
-                                ))}
-                            </ul>
-                            <button className={plan.featured ? 'btn-primary' : 'btn-primary'} style={{ width: '100%', marginTop: '2rem', background: plan.featured ? 'var(--gradient-main)' : 'rgba(255,255,255,0.05)', border: plan.featured ? 'none' : '1px solid var(--glass-border)' }}>
-                                {plan.cta}
-                            </button>
-                        </div>
+                        </ScrollReveal>
                     ))}
                 </div>
             </div>

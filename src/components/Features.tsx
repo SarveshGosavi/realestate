@@ -1,4 +1,6 @@
+'use client';
 import styles from './Features.module.css';
+import ScrollReveal from './ScrollReveal';
 
 const Features = () => {
     const features = [
@@ -37,18 +39,22 @@ const Features = () => {
     return (
         <section id="features" className={styles.features}>
             <div className="container">
-                <div className={styles.header}>
-                    <h2 className="heading-font">Everything you need to <br /><span className="gradient-text">sell faster</span></h2>
-                    <p>Automate your property marketing with our all-in-one AI engine.</p>
-                </div>
+                <ScrollReveal>
+                    <div className={styles.header}>
+                        <h2 className="heading-font">Everything you need to <br /><span className="gradient-text">sell faster</span></h2>
+                        <p>Automate your property marketing with our all-in-one AI engine.</p>
+                    </div>
+                </ScrollReveal>
 
                 <div className={styles.grid}>
                     {features.map((f, i) => (
-                        <div key={i} className="glass-card">
-                            <div className={styles.icon}>{f.icon}</div>
-                            <h3>{f.title}</h3>
-                            <p>{f.description}</p>
-                        </div>
+                        <ScrollReveal key={i} delay={i * 100}>
+                            <div className="glass-card">
+                                <div className={styles.icon}>{f.icon}</div>
+                                <h3>{f.title}</h3>
+                                <p>{f.description}</p>
+                            </div>
+                        </ScrollReveal>
                     ))}
                 </div>
             </div>
